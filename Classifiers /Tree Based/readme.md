@@ -1,0 +1,1 @@
+Logic used in CarClassifier and IrisDataSetClassifier comes from Google: Machine Learning Recipes
