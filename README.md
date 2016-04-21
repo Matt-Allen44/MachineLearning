@@ -14,3 +14,4 @@ Algorithm learns how to perform addition through supervised learning, eg. featur
 
 ### Car Price Estimator
 Estminates the price of a car from its Top Speed and Acceleration.
+	

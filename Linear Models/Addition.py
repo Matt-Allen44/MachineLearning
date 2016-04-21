@@ -1,4 +1,5 @@
 from sklearn import linear_model
+from random import randint
 
 #Experiment to see if we can teach a computer addition, through machine learning
 clf = linear_model.LinearRegression(fit_intercept=True, normalize=False,copy_X=True,n_jobs=1)
@@ -23,8 +24,24 @@ clf = linear_model.LinearRegression(fit_intercept=True, normalize=False,copy_X=T
 
 #Values are in the format [a,b]
 #Sums are in the format [a+b]
-values = [[1,1],[0,70],[3,2],[4,7]]
-sums = [2,70,5,11]
+
+values = [[1,1],[0,70],[3,2]]
+sums = [2,70,5]
 
 clf.fit(values, sums)
-print clf.predict([[0,0],[1,1],[100,0],[1000,2],[100000,10]])
+
+correctSums = int(0);
+lookupRange = 100000
+
+for i in range(0,lookupRange):
+	num1 = randint(lookupRange*-1,lookupRange)
+	num2 = randint(lookupRange*-1,lookupRange)
+	if (abs(num1+num2 - clf.predict([[num1, num2]])) < 0.001)[0]:
+		correctSums = correctSums+1
+
+	#print "%f = %f, %r" % (clf.predict([[num1, num2]]) , num1 + num2, (abs(num1+num2 - clf.predict([[num1, num2]])) < 0.001)[0])
+
+incorrectSums = lookupRange-correctSums
+print "Correct Sums: %i" % correctSums
+print "Incorrect Sums: %i" % incorrectSums
+print "Accuracy: %i" % (correctSums/lookupRange)
